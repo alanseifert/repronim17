@@ -9,7 +9,7 @@ docker pull kaczmarj/neurodocker:master
 docker run -it --rm kaczmarj/neurodocker:master generate \
 	-b neurodebian:stretch-non-free \
 	-p apt \
-	--install fsl-core vim \
+	--install fsl-core vim wget\
 	--add-to-entrypoint "source /etc/fsl/fsl.sh" \
 	--no-check-urls > ${ProjName}.Dockerfile
 
@@ -17,4 +17,4 @@ docker run -it --rm kaczmarj/neurodocker:master generate \
 docker build -t ${ProjName} -f ${ProjName}.Dockerfile ${PWD}
 
 # run docker image
-docker run -it -v ${PWD}:/data -p 9990:9990 ${ProjName}
+docker run -it -v ${PWD}:/repronim17 -p 9990:9990 ${ProjName}
