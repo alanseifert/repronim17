@@ -1,13 +1,12 @@
 #!/bin/sh
 
-BASE_DIR=
-subj_list="subjects"
-
-for subj in ${subj_list}; do
-	cd $BASE_DIR/$subj	
-		
-	echo "$subj: BET"
-	fslreorient2std *_anat.nii.gz *_anat_ro
-	bet *_anat_ro.nii.gz *_anat_brain -m -R
-	fslstats *_anat_brain_mask.nii.gz -V >> vols.txt
-done
+home=`pwd`
+for dir in female male ; do
+	cd $home/Subjects/$dir 
+	sublist=`ls *.nii`
+	for subj in $sublist ; do
+		echo "$subj: BET"
+		fslreorient2std $subj ro_$subj
+		bet ro_$subj ro_${subj}_brainmask -m -R
+		fslstats ro_${subj}_brainmask -V | awk '{ print $2}' >> $home/${dir}_vols.txt
+	done
