@@ -7,15 +7,22 @@ subtable="ReproData.csv" # INSERT CSV HERE
 for (( i=2 ; i<=4 ; i++ )) ; do
 	#starting at 2 to avoid header
 	line=`head -n $i $subtable | tail -n 1`
-	age=cat $line | awk -F "," '{ print $4 }' $subtable
+	echo $line
+	age=`echo $line | awk -F "," '{ print $4 }'`
 	if [[ "$age" -eq 18 ]] ; then
-		sex=cat $line | awk -F "," '{ print $3 }'
-		url=cat $line | awk -F "," '{ print $5 }'
+		sex=`echo $line | awk -F "," '{ print $3 }'`
+		url=`echo $line | awk -F "," '{ print $5 }'`
 		filename=${url##*/}
 		if [[ "$sex" == "F" ]] ; then
-			curl -o Subjects/female/$filename
+			wget -O Subjects/female/$filename $url
+			echo $sex 
+			echo $url 
+			echo $filename
 		else
-			curl -o Subjects/male/$filename
+			wget -O Subjects/male/$filename $url
+			echo $sex 
+			echo $url 
+			echo $filename
 		fi
 	fi
 done
