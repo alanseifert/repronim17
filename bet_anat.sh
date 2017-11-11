@@ -9,5 +9,5 @@ for subj in ${subj_list}; do
 	echo "$subj: BET"
 	fslreorient2std *_anat.nii.gz *_anat_ro
 	bet *_anat_ro.nii.gz *_anat_brain -m -R
-	fslstats *_anat_brain_mask.nii.gz -V
+	fslstats *_anat_brain_mask.nii.gz -V >> *_vols.txt
 done
