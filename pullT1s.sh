@@ -4,7 +4,7 @@
 mkdir -p Subjects/female Subjects/male
 
 # grab the CSV file from google
-curl “https://docs.google.com/spreadsheets/d/1C71ArMZyCN6zKsDx2V4qoTttFsguOupeFuJXxLceF3A/export?format=csv” -o RepoNimChallenge.csv -s
+curl “https://docs.google.com/spreadsheets/d/1C71ArMZyCN6zKsDx2V4qoTttFsguOupeFuJXxLceF3A/export?format=csv” -o ReproNimChallenge.csv -s
 subtable="ReproDataChallenge.csv"
 n=`cat $subtable | wc -l`
 
