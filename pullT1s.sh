@@ -12,17 +12,21 @@ for (( i=2 ; i<=4 ; i++ )) ; do
 	if [[ "$age" -eq 18 ]] ; then
 		sex=`echo $line | awk -F "," '{ print $3 }'`
 		url=`echo $line | awk -F "," '{ print $5 }'`
+		url=${url%%.nii*}.nii
 		filename=${url##*/}
+		filename=${filename%%.nii*}.nii
 		if [[ "$sex" == "F" ]] ; then
 			wget -O Subjects/female/$filename $url
-			echo $sex 
-			echo $url 
-			echo $filename
+#			echo $sex 
+#			echo $url 
+#			echo $filename
+#			echo ""
 		else
 			wget -O Subjects/male/$filename $url
-			echo $sex 
-			echo $url 
-			echo $filename
+#			echo $sex 
+#			echo $url 
+#			echo $filename
+#			echo ""
 		fi
 	fi
 done
