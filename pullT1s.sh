@@ -2,6 +2,8 @@
 
 mkdir -p Subjects/female Subjects/male
 
+curl “https://docs.google.com/spreadsheets/d/1C71ArMZyCN6zKsDx2V4qoTttFsguOupeFuJXxLceF3A/export?format=csv” -o RepoNimChallenge.csv -s
+
 subtable="ReproData.csv" # INSERT CSV HERE
 
 for (( i=2 ; i<=4 ; i++ )) ; do
